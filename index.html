@@ -6,10 +6,42 @@
         <title>Document</title>
     </head>
     <body>
+        <div id="a"></div>
         <div id="root"></div>
         <script>
-            const root = document.getElementById("root");
-            root.innerHTML = navigator.deviceMemory;            
+            document.getElementById("a").innerHTML = navigator.deviceMemory;
+            let total = 0;
+            try {
+                const root = document.getElementById("root");
+                let x = new Uint8Array(2_000_000_000);//8589934592
+                for(let i = 0; i< x.length; i++) {
+                    x[i] = i;
+                    if (i % (1<<20) === 0) 
+                        root.innerHTML = i / 1048576 + "MB";     
+                    // console.log(i);
+                }
+                total += x.length;
+            } catch(e) {
+                document.getElementById("a").innerHTML = e.message;            
+            }
+
+            try {
+                const root = document.getElementById("root");
+                let x = new Uint8Array(2_000_000_000);//8589934592
+                for(let i = 0; i< x.length; i++) {
+                    x[i] = i;
+                    if (i % (1<<20) === 0) 
+                        root.innerHTML = i / 1048576 + "MB";     
+                    // console.log(i);
+                }
+                total += x.length;
+            } catch(e) {
+                document.getElementById("a").innerHTML = e.message;            
+            }
+            
+            document.getElementById("a").innerHTML = "total=" + total;   
+
+
         </script>
     </body>
 </html>
