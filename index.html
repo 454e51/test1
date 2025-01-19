@@ -13,7 +13,7 @@
         <div id="deviceMemory"></div>
         <div id="coi"></div>
         type=<input id="type" type="number" value="0"/><br/>
-        m=<input id="m" type="number" value="3800"/><br/>
+        m=<input id="m" type="number" value="500"/><br/>
         t=<input id="t" type="number" value="1"/><br/>
         p=<input id="p" type="number" value="1"/><br/>
         <button id="runButton">Run</button>
@@ -431,7 +431,7 @@ document.getElementById("runButton").onclick = async () => {
     localStorage.setItem('t', t);
     localStorage.setItem('p', p);
 
-    for (m = document.getElementById("m").value; m <= 4000; m += 100) {
+    for (m = +document.getElementById("m").value; m <= 4000; m += 100) {
         document.getElementById("m").value = m;
         localStorage.setItem('m', m);
 
