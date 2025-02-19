@@ -1,0 +1,3 @@
+[submodule "sub/teset2"]
+	path = sub/teset2
+	url = https://github.com/454e51/teset2.git
