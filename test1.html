@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 // 123
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (bar) {
-    alert("testetst" + bar);
+    // alert("testetst" + bar);
 });
 
 /***/ })
@@ -114,25 +114,6 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_helpers_js__WEBPACK_IMPORTED_MODULE_1__["default"])("bar");
 
-function getIOSVersion() {
-	const userAgent = window.navigator.userAgent;
-	// Check if the device is iOS and exclude Windows Phone
-	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-		// Split user agent to find the OS version
-		const osVersion = userAgent.split(/OS /);
-		if (osVersion.length > 1) {
-			// Extract version numbers and format them
-			const versionPart = osVersion[1].split(/[^0-9_]/)[0];
-			return versionPart ? +versionPart.replaceAll('_', '.') : null;
-		}
-	}
-	return null;
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("root").innerHTML = getIOSVersion();
-    console.log(window.ABCDEFG);
-});
 
 })();
 
@@ -140,8 +121,22 @@ document.addEventListener("DOMContentLoaded", function() {
 ;</script>
 
         <script>
-            // const root = document.getElementById("root");
-            // root.innerHTML = navigator.deviceMemory + " " + window.ABCDEFG;            
+            function getIOSVersion() {
+                const userAgent = window.navigator.userAgent;
+                // Check if the device is iOS and exclude Windows Phone
+                if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    // Split user agent to find the OS version
+                    const osVersion = userAgent.split(/OS /);
+                    if (osVersion.length > 1) {
+                        // Extract version numbers and format them
+                        const versionPart = osVersion[1].split(/[^0-9_]/)[0];
+                        return versionPart ? +versionPart.replaceAll('_', '.') : null;
+                    }
+                }
+                return null;
+            }
+
+            document.getElementById("root").innerHTML = getIOSVersion();          
         </script>
     </body>
 </html>
