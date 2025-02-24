@@ -122,15 +122,17 @@ __webpack_require__.r(__webpack_exports__);
 
         <script>
             function getIOSVersion() {
-                const userAgent = window.navigator.userAgent;
-                // Check if the device is iOS and exclude Windows Phone
+                const userAgent = navigator.userAgent;
                 if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                    // Split user agent to find the OS version
-                    const osVersion = userAgent.split(/OS /);
-                    if (osVersion.length > 1) {
-                        // Extract version numbers and format them
-                        const versionPart = osVersion[1].split(/[^0-9_]/)[0];
-                        return versionPart ? +versionPart.replaceAll('_', '.') : null;
+                    const osVersionMatch = userAgent.match(/OS (\d+(_\d+)*)/);
+                    if (osVersionMatch) {
+                        const versionString = osVersionMatch[1].replace(/_/g, '.');
+                        const versionParts = versionString.split('.');
+                        
+                        return {
+                            major: parseInt(versionParts[0], 10),
+                            minor: versionParts[1] ? parseInt(versionParts[1], 10) : 0
+                        };
                     }
                 }
                 return null;
