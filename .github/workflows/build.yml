@@ -1,4 +1,4 @@
-name: Build with npm
+name: Build
 
 on:
   push:
@@ -21,6 +21,10 @@ jobs:
       with:
         submodules: 'recursive'
 
+    - name: Get commit SHA
+      id: get-commit-sha
+      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -35,5 +39,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build-output
-        path: dist/  # Your build output directory
+        name: build-output-${{ steps.get-commit-sha.outputs.sha_short }}
+        path: dist/
