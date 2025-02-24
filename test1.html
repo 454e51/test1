@@ -137,8 +137,11 @@ __webpack_require__.r(__webpack_exports__);
                 }
                 return null;
             }
-
-            document.getElementById("root").innerHTML = "IOS version major:"+  getIOSVersion().major + " minor:" + getIOSVersion().minor;          
-        </script>
+            if (getIOSVersion()) {
+                document.getElementById("root").innerHTML = "IOS version major:"+  getIOSVersion().major + " minor:" + getIOSVersion().minor;
+            } else {
+                document.getElementById("root").innerHTML = "not ios";
+            }
+             </script>
     </body>
 </html>
