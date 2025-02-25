@@ -1,4 +1,4 @@
-name: Create Release and Deploy to GitHub Pages
+name: Release & Deploy
 
 on:
   workflow_dispatch:
@@ -11,9 +11,6 @@ on:
       release-tag-suffix:
         description: 'Release tag suffix'
         required: false
-      release-title:
-        description: 'Release title'
-        required: true
       release-notes:
         description: 'Release notes'
       release-pre:
@@ -59,12 +56,6 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
-
     - name: Extract package version
       id: package-version
       run: |
@@ -77,7 +68,6 @@ jobs:
         draft: ${{ github.event.inputs.save-draft }}
         body: ${{ github.event.inputs.release-notes }}
         prerelease: ${{ github.event.inputs.release-pre }}
-        name: ${{ github.event.inputs.release-title }}
         tag_name: v${{ steps.package-version.outputs.version }}${{ github.event.inputs.release-tag-suffix }}
         generate_release_notes: ${{ github.event.inputs.append-generated-notes }}
         fail_on_unmatched_files: true
@@ -85,3 +75,11 @@ jobs:
           dist/test1.html
           readme.md
 
+    - name: Rename to index.html
+      run: mv dist/test1.html dist/index.html
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
