@@ -73,7 +73,7 @@ jobs:
         fail_on_unmatched_files: true
         files: |
           dist/test1.html
-          readme.md
+          README.md
 
     - name: Rename to index.html
       run: mv dist/test1.html dist/index.html
