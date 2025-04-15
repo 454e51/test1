@@ -7,3 +7,7 @@
 ![Picture heic](docs/1920.heic "heic")
 
 ![Picture heic](docs/400.png "400")
+
+<p align="center">
+  <img width="460" height="300" src="docs/400.png">
+</p>
