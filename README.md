@@ -3,3 +3,4 @@
 ![Picture png](docs/1920.png "PNG")
 ![Picture jpg](docs/1920.jpg "jpg")
 ![Picture heic](docs/1920.heic "heic")
+![Picture heic](docs/400.png "400")
